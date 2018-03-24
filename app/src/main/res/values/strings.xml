@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">luxBot</string>
+    <string name="type_a_message">Type a Message</string>
+    <string name="todo" tools:keep="@string/todo">TODO</string>
+    <string name="micbutton" tools:keep="@string/micbutton">MicButton</string>
+    <string name="micicon">MicIcon</string>
+    <string name="sign_in" tools:keep="@string/sign_in">Sign In</string>
+    <string name="hi_how_are_you">Hi!! How are you!!</string>
+    <string name="hello_this_is_me">Hello this is me!!</string>
+</resources>

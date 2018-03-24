@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:keep="@layout/msglist">
+
+    <TextView
+        android:id="@+id/leftText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_alignParentStart="true"
+        android:text="@string/hello_this_is_me"
+        android:padding="8dp"
+        android:textColor="#212121"
+        android:background="@drawable/left_background"
+        android:elevation="2dp"
+        />
+
+
+    <TextView
+        android:id="@+id/rightText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_alignParentEnd="true"
+        android:text="@string/hi_how_are_you"
+        android:background="@drawable/right_background"
+        android:textColor="#fff"
+        android:padding="8dp"
+        android:elevation="2dp"/>
+
+
+</RelativeLayout>

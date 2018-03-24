@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "611342751432",
+    "firebase_url": "https://lux-bot-1f3f3.firebaseio.com",
+    "project_id": "lux-bot-1f3f3",
+    "storage_bucket": "lux-bot-1f3f3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611342751432:android:d16c5b6ed747b412",
+        "android_client_info": {
+          "package_name": "eplab.elang.luxbot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "611342751432-nmvuf8e2v9fuhlc6t4q1fhv4lkgumls9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "eplab.elang.luxbot",
+            "certificate_hash": "3f384c948079797ed0d3cf153f2f832d50979f22"
+          }
+        },
+        {
+          "client_id": "611342751432-qn7k94bmrl4jimhk8hhon0irobnk3e0b.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "611342751432-0qfcso3fm0ct2qb5eg6nkc29h6ksq6j9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD5Du8CKhGoyOBiLd7EdhA2MPVTJiWsKc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "611342751432-qn7k94bmrl4jimhk8hhon0irobnk3e0b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
