@@ -2,7 +2,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 'android-P'
+    compileSdkVersion 27
     defaultConfig {
         applicationId "eplab.elang.luxbot"
         minSdkVersion 23
@@ -38,21 +38,22 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:27.1.0'
 
     //Firebase Dependency
-    implementation 'com.google.firebase:firebase-core:12.0.0'
-    implementation 'com.google.firebase:firebase-database:12.0.0'
+    implementation 'com.google.firebase:firebase-core:12.0.1'
+    implementation 'com.google.firebase:firebase-database:12.0.1'
     implementation 'com.firebaseui:firebase-ui-database:3.2.2'
-    implementation 'com.google.firebase:firebase-messaging:12.0.0'
-    implementation 'com.google.firebase:firebase-appindexing:12.0.0'
-    implementation 'com.google.firebase:firebase-auth:12.0.0'
+    implementation 'com.google.firebase:firebase-messaging:12.0.1'
+    implementation 'com.google.firebase:firebase-appindexing:12.0.1'
+    implementation 'com.google.firebase:firebase-auth:12.0.1'
+    implementation 'com.google.firebase:firebase-storage:12.0.1'
 
     //Ai DIalog Flow Dependency
     implementation 'ai.api:sdk:2.0.7@aar'
     implementation 'ai.api:libai:1.6.12'
-    //annotationProcessor 'ai.api.libai:1.4.8'
 
     //Google Dependencies
     implementation 'com.google.code.gson:gson:2.8.1'
-    implementation 'com.google.android.gms:play-services-auth:12.0.0'
+    implementation 'com.google.android.gms:play-services-auth:12.0.1'
+    implementation 'com.google.android.gms:play-services-maps:12.0.1'
 
     //Analyltic
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.1@aar') {

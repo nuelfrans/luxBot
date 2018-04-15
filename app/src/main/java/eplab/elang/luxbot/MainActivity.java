@@ -1,29 +1,34 @@
 package eplab.elang.luxbot;
 
 //Android Dependencies
+
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.view.animation.Animation;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
-//Firebase and Google Dependencies
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.SnapshotParser;
@@ -31,7 +36,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-//API.AI ( Dialog Flow Dependencies )
 import ai.api.AIDataService;
 import ai.api.AIListener;
 import ai.api.AIServiceException;
@@ -41,6 +45,9 @@ import ai.api.model.AIError;
 import ai.api.model.AIRequest;
 import ai.api.model.AIResponse;
 import ai.api.model.Result;
+
+//Firebase and Google Dependencies
+//API.AI ( Dialog Flow Dependencies )
 
 
 
@@ -55,6 +62,18 @@ public class MainActivity extends AppCompatActivity implements AIListener {
     private GoogleApiClient GAP;
     private static final String ANONYMOUS = "ANONYMOUS";
 
+    /**
+     * Request code for location permission request.
+     *
+     * @see #onRequestPermissionsResult(int, String[], int[])
+     */
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
+
+    /**
+     * Flag indicating whether a requested permission has been denied after returning in
+     * {@link #onRequestPermissionsResult(int, String[], int[])}.
+     */
+    private boolean mPermissionDenied = false;
 
     // Firebase instance variables
     private FirebaseRecyclerAdapter<ChatMessage, chat_rec> FBAdapter;
@@ -96,10 +115,17 @@ public class MainActivity extends AppCompatActivity implements AIListener {
 
         addBtn.setOnClickListener(view -> {
 
+            //Toast Notification
+            Context context = getApplicationContext();
+            CharSequence text = "Recording...";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+
             String message = editText.getText().toString().trim();
 
-            if (!message.equals("")) {
 
+            if (!message.equals("")) {
                 ChatMessage chatMessage = new ChatMessage(message, User);
                 ref.child(Chat).push().setValue(chatMessage);
 
@@ -259,6 +285,7 @@ public class MainActivity extends AppCompatActivity implements AIListener {
 
     }
 
+
     @Override
     public void onPause() {
         FBAdapter.stopListening();
@@ -270,23 +297,6 @@ public class MainActivity extends AppCompatActivity implements AIListener {
         super.onResume();
         FBAdapter.startListening();
     }
-
-
-    /*
-    //Logout Method
-    public boolean onOptionItemSelected(MenuItem item){
-        switch(item.getItemId()){
-            case R.id.sign_out_menu;
-            FBAuth.signOut();
-            Auth.GoogleSignInApi.signOut(GAP);
-            FBUsername = ANONYMOUS;
-            startActivity(new Intent(this,SignInActivity.class));
-            finish();
-            return true;
-            default:
-                return super.onOptionItemSelected(item);
-        }
-    }*/
 
     @Override
     public void onError(AIError error) {
@@ -311,5 +321,27 @@ public class MainActivity extends AppCompatActivity implements AIListener {
     @Override
     public void onListeningFinished() {
         //Code Here
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    public boolean onOptionItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.gps_button:
+                gps();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void gps() {
+        Intent intent = new Intent(this, GPSFunction.class);
+        startActivity(intent);
     }
 }

@@ -7,4 +7,8 @@
     <string name="sign_in" tools:keep="@string/sign_in">Sign In</string>
     <string name="hi_how_are_you">Hi!! How are you!!</string>
     <string name="hello_this_is_me">Hello this is me!!</string>
+    <string name="permission_rationale_location" />
+    <string name="permission_required_toast" />
+    <string name="location_permission_denied" />
+    <string name="gps">GPS</string>
 </resources>

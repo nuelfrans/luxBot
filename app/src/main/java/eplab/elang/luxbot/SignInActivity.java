@@ -19,6 +19,8 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import java.util.Objects;
+
 public class SignInActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
@@ -73,7 +75,7 @@ public class SignInActivity extends AppCompatActivity implements
             if(result.isSuccess()){
                 //Google Sign In Successfully Executed
                 GoogleSignInAccount account = result.getSignInAccount();
-                firebaseAuthWithGoogle(account);
+                firebaseAuthWithGoogle(Objects.requireNonNull(account));
             }else{
                 //Google Sign In Failed
                 Log.e(TAG, "Google Sign-In Failed.");

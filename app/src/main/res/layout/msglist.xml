@@ -24,13 +24,15 @@
         android:id="@+id/rightText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:layout_alignParentEnd="true"
-        android:text="@string/hi_how_are_you"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="56dp"
         android:background="@drawable/right_background"
-        android:textColor="#fff"
+        android:elevation="2dp"
         android:padding="8dp"
-        android:elevation="2dp"/>
+        android:text="@string/hi_how_are_you"
+        android:textColor="#fff" />
 
 
 </RelativeLayout>
