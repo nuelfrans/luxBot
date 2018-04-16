@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 
-class chat_rec extends RecyclerView.ViewHolder {
+public class chat_rec extends RecyclerView.ViewHolder {
     final TextView leftText;
     final TextView rightText;
 

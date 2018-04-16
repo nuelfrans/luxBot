@@ -6,5 +6,6 @@
     <item
         android:id="@+id/gps_button"
         android:enabled="true"
+        android:onClick="gps"
         android:title="@string/gps" />
 </menu>

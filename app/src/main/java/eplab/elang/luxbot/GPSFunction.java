@@ -40,9 +40,7 @@ public class GPSFunction extends AppCompatActivity
     }
 
     public void onMapReady(GoogleMap mapView) {
-
         Map = mapView;
-
         Map.setOnMyLocationButtonClickListener(this);
         Map.setOnMyLocationClickListener(this);
         enableMyLocation();
@@ -67,7 +65,7 @@ public class GPSFunction extends AppCompatActivity
 
     @Override
     public boolean onMyLocationButtonClick() {
-        Toast.makeText(this, "Locating your position", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Locating your position...", Toast.LENGTH_SHORT).show();
         return false;
     }
 

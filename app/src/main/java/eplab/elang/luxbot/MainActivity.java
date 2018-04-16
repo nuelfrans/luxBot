@@ -1,7 +1,5 @@
 package eplab.elang.luxbot;
 
-//Android Dependencies
-
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -32,7 +30,6 @@ import android.widget.Toast;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.SnapshotParser;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -46,11 +43,6 @@ import ai.api.model.AIRequest;
 import ai.api.model.AIResponse;
 import ai.api.model.Result;
 
-//Firebase and Google Dependencies
-//API.AI ( Dialog Flow Dependencies )
-
-
-
 public class MainActivity extends AppCompatActivity implements AIListener {
     private EditText editText;
     private DatabaseReference ref;
@@ -59,8 +51,7 @@ public class MainActivity extends AppCompatActivity implements AIListener {
     private static final String User = "user";
     private static final String Bot = "bot";
     private static final String Chat = "chat";
-    private GoogleApiClient GAP;
-    private static final String ANONYMOUS = "ANONYMOUS";
+
 
     /**
      * Request code for location permission request.
@@ -75,6 +66,9 @@ public class MainActivity extends AppCompatActivity implements AIListener {
      */
     private boolean mPermissionDenied = false;
 
+    //Getter sender Role
+    private String Actor;
+
     // Firebase instance variables
     private FirebaseRecyclerAdapter<ChatMessage, chat_rec> FBAdapter;
 
@@ -83,7 +77,6 @@ public class MainActivity extends AppCompatActivity implements AIListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         final RecyclerView recyclerView = findViewById(R.id.recyclerView);
         editText = findViewById(R.id.editText);
         RelativeLayout addBtn = findViewById(R.id.addBtn);
@@ -127,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements AIListener {
 
             if (!message.equals("")) {
                 ChatMessage chatMessage = new ChatMessage(message, User);
+                Actor = chatMessage.getMsgUser();
                 ref.child(Chat).push().setValue(chatMessage);
 
                 aiRequest.setQuery(message);
@@ -208,15 +202,16 @@ public class MainActivity extends AppCompatActivity implements AIListener {
         FBAdapter = new FirebaseRecyclerAdapter<ChatMessage, chat_rec>(options) {
             @Override
             protected void onBindViewHolder(@NonNull final chat_rec holder, int position, @NonNull ChatMessage model) {
-                if (model.getMsgText().equals(User)) {
+                if (Actor == User) {
                     holder.rightText.setText(model.getMsgText());
-                    holder.rightText.setVisibility(View.VISIBLE);
                     holder.leftText.setVisibility(View.GONE);
-
-                } else{
+                    holder.rightText.setVisibility(View.VISIBLE);
+                    Actor = Bot;
+                } else if (Actor == Bot) {
                     holder.leftText.setText(model.getMsgText());
-                    holder.rightText.setVisibility(View.GONE);
                     holder.leftText.setVisibility(View.VISIBLE);
+                    holder.rightText.setVisibility(View.GONE);
+                    Actor = User;
                 }
             }
 
@@ -274,13 +269,13 @@ public class MainActivity extends AppCompatActivity implements AIListener {
         Result result = response.getResult();
 
         String message = result.getResolvedQuery();
-        ChatMessage chatMessage0 = new ChatMessage(message, User);
-        ref.child(Chat).push().setValue(chatMessage0);
+        ChatMessage userChat = new ChatMessage(message, User);
+        ref.child(Chat).push().setValue(userChat);
 
 
         String reply = result.getFulfillment().getSpeech();
-        ChatMessage chatMessage = new ChatMessage(reply, Bot);
-        ref.child(Chat).push().setValue(chatMessage);
+        ChatMessage botChat = new ChatMessage(reply, Bot);
+        ref.child(Chat).push().setValue(botChat);
 
 
     }
@@ -333,15 +328,17 @@ public class MainActivity extends AppCompatActivity implements AIListener {
     public boolean onOptionItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.gps_button:
-                gps();
+                //Nefille
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    private void gps() {
+
+    public void gps(MenuItem item) {
         Intent intent = new Intent(this, GPSFunction.class);
         startActivity(intent);
     }
+
 }
