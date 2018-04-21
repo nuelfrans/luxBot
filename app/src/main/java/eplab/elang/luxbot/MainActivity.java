@@ -51,19 +51,7 @@ public class MainActivity extends AppCompatActivity implements AIListener {
     private static final String User = "user";
     private static final String Bot = "bot";
     private static final String Chat = "chat";
-
-
-    /**
-     * Request code for location permission request.
-     *
-     * @see #onRequestPermissionsResult(int, String[], int[])
-     */
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
-
-    /**
-     * Flag indicating whether a requested permission has been denied after returning in
-     * {@link #onRequestPermissionsResult(int, String[], int[])}.
-     */
     private boolean mPermissionDenied = false;
 
     //Getter sender Role
@@ -107,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements AIListener {
 
 
         addBtn.setOnClickListener(view -> {
+            String message = editText.getText().toString().trim();
 
             //Toast Notification
             Context context = getApplicationContext();
@@ -114,8 +103,6 @@ public class MainActivity extends AppCompatActivity implements AIListener {
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
-
-            String message = editText.getText().toString().trim();
 
 
             if (!message.equals("")) {
